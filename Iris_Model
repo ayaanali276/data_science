@@ -1,94 +1,94 @@
 
 Linear Regression on Iris Dataset
-In [38]:
+In [1]:
 
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score,mean_absolute_error,mean_squared_error
 
-In [39]:
+In [2]:
 
 from sklearn.datasets import load_iris
 
-In [40]:
+In [3]:
 
 iris = load_iris() #['sepal length (cm)','sepal width (cm)','petal length (cm)','petal width (cm)'],
 
-In [41]:
+In [4]:
 
 x = iris.data         # iris['data']
 y = iris.target       # iris['target']
 
-In [42]:
+In [5]:
 
 iris['target_names']
 
-Out[42]:
+Out[5]:
 
 array(['setosa', 'versicolor', 'virginica'], dtype='<U10')
 
-In [72]:
+In [6]:
 
 x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.20,random_state=0)
 
-In [73]:
+In [7]:
 
 Lin = LinearRegression()
 
-In [74]:
+In [8]:
 
 Lin.fit(x_train,y_train)
 
-Out[74]:
+Out[8]:
 
 LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=False)
 
-In [75]:
+In [9]:
 
 Lin.coef_ # Here we find b1 of equation b0+b1*x
 
-Out[75]:
+Out[9]:
 
 array([-0.10627533, -0.0397204 ,  0.22894234,  0.61123074])
 
-In [76]:
+In [10]:
 
 Lin.intercept_ # intercept (b0)
 
-Out[76]:
+Out[10]:
 
 0.16149541375178922
 
-In [77]:
+In [11]:
 
 Pred_y = Lin.predict(x_test)
 
-In [78]:
+In [12]:
 
 acc = r2_score(y_test,Pred_y)
 acc
 
-Out[78]:
+Out[12]:
 
 0.9055032992676105
 
-In [79]:
+In [13]:
 
 #MAE measures the average magnitude of the errors in a set of predictions,without considering their direction.
 #The Mean Absolute Error(MAE) is the average of all absolute errors.
 mean_absolute_error(y_test,Pred_y)
 
-Out[79]:
+Out[13]:
 
 0.18641707995607298
 
-In [80]:
+In [14]:
 
 #RMSE is a quadratic scoring rule that also measures the average magnitude of the error.
 # The average squared difference between the estimated values and the actual value
 mean_squared_error(y_test,Pred_y)
 
-Out[80]:
+Out[14]:
 
 0.05092322206134319
 
